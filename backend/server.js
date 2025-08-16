@@ -8,9 +8,13 @@ const { SMA, RSI, MACD } = require("technicalindicators");
 const yf = require("yahoo-finance2").default;
 
 const app = express();
+app.use(cors({
+  origin: [
+    "https://stock-dashboard-1-lk6g.onrender.com", // your frontend Render URL
+    "http://localhost:5173" // (optional) local dev
+  ]
+}));
 
-// Allow frontend from env variable (default to all)
-app.use(cors({ origin: process.env.FRONTEND_URL || "*" }));
 app.use(express.json());
 
 // Mongoose schemas
